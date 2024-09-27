@@ -20,6 +20,7 @@ list_of_directories = [
     'requirements.txt',
     'setup.py',
     'research/trials.ipynb',
+    'templates/index.html'
 ]
 
 for file_path in list_of_directories:
