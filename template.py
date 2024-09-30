@@ -19,7 +19,6 @@ list_of_directories = [
     'params.yaml',
     'requirements.txt',
     'setup.py',
-    'research/trials.ipynb',
     'templates/index.html'
 ]
 
