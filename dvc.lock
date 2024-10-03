@@ -1,0 +1,117 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src\EcoMeal\pipeline\data_ingestion.py
+    deps:
+    - path: config\config.yaml
+      hash: md5
+      md5: 16d48648b1f3de5eb425ee4b4df9646d
+      size: 1601
+    - path: src\EcoMeal\pipeline\data_ingestion.py
+      hash: md5
+      md5: 9b9f796d695d2290d44b9b5ed7a6f21b
+      size: 830
+    outs:
+    - path: artifacts\data_ingestion\Indian Food Images
+      hash: md5
+      md5: e1f4f35df742c162fd5bc11068e37ce8.dir
+      size: 376715280
+      nfiles: 4000
+  prepare_base_model:
+    cmd: python src\EcoMeal\pipeline\prepare_base_model.py
+    deps:
+    - path: config\config.yaml
+      hash: md5
+      md5: 16d48648b1f3de5eb425ee4b4df9646d
+      size: 1601
+    - path: src\EcoMeal\pipeline\prepare_base_model.py
+      hash: md5
+      md5: ca31db4d565ae731d9f01dfe373ae4a1
+      size: 868
+    params:
+      params.yaml:
+        CLASSES: 80
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+        INCLUDE_TOP: false
+        LEARNING_RATE: 0.001
+        WEIGHTS: imagenet
+    outs:
+    - path: artifacts\prepare_base_model
+      hash: md5
+      md5: 3d8841710c62c593901c4f24722d0035.dir
+      size: 212487629
+      nfiles: 2
+  training:
+    cmd: python src\EcoMeal\pipeline\model_training.py
+    deps:
+    - path: artifacts\data_ingestion\Indian Food Images
+      hash: md5
+      md5: e1f4f35df742c162fd5bc11068e37ce8.dir
+      size: 376715280
+      nfiles: 4000
+    - path: artifacts\prepare_base_model
+      hash: md5
+      md5: 3d8841710c62c593901c4f24722d0035.dir
+      size: 212487629
+      nfiles: 2
+    - path: config\config.yaml
+      hash: md5
+      md5: 16d48648b1f3de5eb425ee4b4df9646d
+      size: 1601
+    - path: src\EcoMeal\components\prepare_callbacks.py
+      hash: md5
+      md5: 1b4af2414f8b1bb7049e9eb9613ea049
+      size: 962
+    - path: src\EcoMeal\pipeline\model_training.py
+      hash: md5
+      md5: 920e5b247e479d2941c9f5edafbfb8db
+      size: 1139
+    params:
+      params.yaml:
+        AUGUMENTATION: true
+        BATCH_SIZE: 32
+        EPOCHS: 1
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+    outs:
+    - path: artifacts\model_training\model.keras
+      hash: md5
+      md5: 45a632f01858b539932ec20b59c04b42
+      size: 236495726
+  evaluation:
+    cmd: python src\EcoMeal\pipeline\model_evaluation.py
+    deps:
+    - path: artifacts\data_ingestion\Indian Food Images
+      hash: md5
+      md5: e1f4f35df742c162fd5bc11068e37ce8.dir
+      size: 376715280
+      nfiles: 4000
+    - path: artifacts\model_training\model.keras
+      hash: md5
+      md5: 45a632f01858b539932ec20b59c04b42
+      size: 236495726
+    - path: config\config.yaml
+      hash: md5
+      md5: 16d48648b1f3de5eb425ee4b4df9646d
+      size: 1601
+    - path: src\EcoMeal\pipeline\model_evaluation.py
+      hash: md5
+      md5: e00c988857bdb6494e2ea94af007a99f
+      size: 825
+    params:
+      params.yaml:
+        BATCH_SIZE: 32
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+    outs:
+    - path: scores.json
+      hash: md5
+      md5: e7f4dd33db78011ad945f907ba13e3fc
+      size: 73

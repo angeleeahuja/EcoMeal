@@ -1,23 +1,23 @@
 from EcoMeal import logger
-from EcoMeal.components.data_ingestion import DataIngestion
+from EcoMeal.components.model_evaluation import ModelEvaluation
 from EcoMeal.config.configurations import ConfigurationManager
 
-STAGE_NAME = 'Data Ingestion Stage'
-class DataIngestionTrainingPipeline():
+STAGE_NAME = 'Model Evaluation'
+class ModelEvaluationPipeline:
     def __init__(self):
         pass
 
     def main(self):
         config = ConfigurationManager()
-        data_ingestion_config = config.get_data_ingestion_config()
-        data_ingestion = DataIngestion(config= data_ingestion_config)
-        data_ingestion.download_file()
-        data_ingestion.extract_zip_file()
+        model_evaluation_config = config.get_model_evaluation_config()
+        model_evaluation = ModelEvaluation(config= model_evaluation_config)
+        model_evaluation.evaluate_model()
+        model_evaluation.save_score()
 
 if __name__ == "__main__":
     try:
         logger.info(f'Starting {STAGE_NAME}')
-        obj = DataIngestionTrainingPipeline()
+        obj = ModelEvaluationPipeline()
         obj.main()
         logger.info(f'Finished {STAGE_NAME}')
     except Exception as e:

@@ -6,7 +6,7 @@ import tensorflow as tf
 from EcoMeal.entity.config_entity import PrepareBaseModelConfig
 
 class PrepareBaseModel:
-    def __init__(self, config= PrepareBaseModelConfig):
+    def __init__(self, config: PrepareBaseModelConfig):
         self.config = config
 
     def get_base_model(self):
@@ -18,16 +18,28 @@ class PrepareBaseModel:
         self.save_model(path= self.config.base_model_path, model= self.model)
 
     @staticmethod
-    def prepare_full_model(model, classes, freeze_all, freeze_till, learning_rate):
+    def _prepare_full_model(model, classes, freeze_all, freeze_till, learning_rate):
         if freeze_all:
             for layer in model.layers:
                 layer.trainable = False
-        elif (freeze_till is not None) and freeze_till > 0:
+        elif (freeze_till is not None) and (freeze_till > 0):
             for layer in model.layers[:-freeze_till]:
                 layer.trainable = False
         
         flatten_in = tf.keras.layers.Flatten()(model.output)
-        prediction = tf.keras.layers.Dense(units= classes, activation= 'softmax')(flatten_in)
+        dense_layer = tf.keras.layers.Dense(units=512, activation='relu')(flatten_in)
+        dense_layer = tf.keras.layers.BatchNormalization()(dense_layer)
+        dense_layer = tf.keras.layers.Dropout(0.5)(dense_layer)
+
+        dense_layer = tf.keras.layers.Dense(units=256, activation='relu')(dense_layer)
+        dense_layer = tf.keras.layers.BatchNormalization()(dense_layer)
+        dense_layer = tf.keras.layers.Dropout(0.5)(dense_layer)
+
+        dense_layer = tf.keras.layers.Dense(units=128, activation='relu')(dense_layer)
+        dense_layer = tf.keras.layers.BatchNormalization()(dense_layer)
+        dense_layer = tf.keras.layers.Dropout(0.5)(dense_layer)
+
+        prediction = tf.keras.layers.Dense(units=classes, activation='softmax')(dense_layer)
         
         full_model = tf.keras.models.Model(
             inputs= model.input,
@@ -40,11 +52,10 @@ class PrepareBaseModel:
             metrics= ['accuracy']
         )
 
-        full_model.summary()
         return full_model
     
     def update_base_model(self):
-        self.full_model = self.prepare_full_model(
+        self.full_model = self._prepare_full_model(
             model= self.model,
             classes= self.config.params_classes,
             freeze_all= True,
@@ -56,6 +67,6 @@ class PrepareBaseModel:
 
     @staticmethod
     def save_model(path: Path, model: tf.keras.Model):
-        if not path.suffix == '.keras':
-            path = path.with_suffix('.keras')
-        model.save(path)
+        # if not path.suffix == '.keras':
+        #     path = path.with_suffix('.keras')
+        model.save(path, include_optimizer=False)

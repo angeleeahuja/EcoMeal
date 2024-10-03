@@ -16,10 +16,10 @@ class PrepareBaseModelTrainingPipeline:
 
 if __name__ == "__main__":
     try:
-        logger.info(f'Starting {STAGE_NAME} stage')
+        logger.info(f'Starting {STAGE_NAME}')
         obj = PrepareBaseModelTrainingPipeline()
         obj.main()
-        logger.info(f'Finished {STAGE_NAME} stage')
+        logger.info(f'Finished {STAGE_NAME}')
     except Exception as e:
         logger.exception(e)
         raise e
