@@ -16,4 +16,4 @@ logging.basicConfig(
     ]
 )
 
-logger = logging.getLogger('EcoMealLogger')
+logger = logging.getLogger('ecomealLogger')

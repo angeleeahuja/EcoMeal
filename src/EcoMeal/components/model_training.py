@@ -1,7 +1,7 @@
 import math
 import tensorflow as tf
 from pathlib import Path
-from EcoMeal.entity.config_entity import ModelTrainingConfig
+from ecomeal.entity.config_entity import ModelTrainingConfig
 
 class ModelTraining:
     def __init__(self, config: ModelTrainingConfig):

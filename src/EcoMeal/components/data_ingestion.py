@@ -1,10 +1,10 @@
 import os
 import zipfile
 from pathlib import Path
-from EcoMeal import logger
+from ecomeal import logger
 import urllib.request as request
-from EcoMeal.utils.common import get_size
-from EcoMeal.entity.config_entity import DataIngestionConfig
+from ecomeal.utils.common import get_size
+from ecomeal.entity.config_entity import DataIngestionConfig
 
 class DataIngestion:
     def __init__(self, config: DataIngestionConfig):

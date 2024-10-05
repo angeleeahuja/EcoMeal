@@ -1,8 +1,8 @@
-from EcoMeal import logger
-from EcoMeal.pipeline.data_ingestion import DataIngestionTrainingPipeline
-from EcoMeal.pipeline.prepare_base_model import PrepareBaseModelTrainingPipeline
-from EcoMeal.pipeline.model_training import ModelTrainingPipeline
-from EcoMeal.pipeline.model_evaluation import ModelEvaluationPipeline
+from ecomeal import logger
+from ecomeal.pipeline.data_ingestion import DataIngestionTrainingPipeline
+from ecomeal.pipeline.prepare_base_model import PrepareBaseModelTrainingPipeline
+from ecomeal.pipeline.model_training import ModelTrainingPipeline
+from ecomeal.pipeline.model_evaluation import ModelEvaluationPipeline
 
 STAGE_NAME = "Data Ingestion"
 try:

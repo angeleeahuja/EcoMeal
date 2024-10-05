@@ -1,7 +1,7 @@
 import os
-from EcoMeal.constants import *
-from EcoMeal.utils.common import read_yaml, create_directories
-from EcoMeal.entity.config_entity import (DataIngestionConfig, PrepareBaseModelConfig, PrepareCallbacksConfig, 
+from ecomeal.constants import *
+from ecomeal.utils.common import read_yaml, create_directories
+from ecomeal.entity.config_entity import (DataIngestionConfig, PrepareBaseModelConfig, PrepareCallbacksConfig, 
                                           ModelTrainingConfig, ModelEvaluationConfig)
 
 class ConfigurationManager:

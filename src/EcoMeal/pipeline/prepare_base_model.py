@@ -1,6 +1,6 @@
-from EcoMeal import logger
-from EcoMeal.components.prepare_base_model import PrepareBaseModel
-from EcoMeal.config.configurations import ConfigurationManager
+from ecomeal import logger
+from ecomeal.components.prepare_base_model import PrepareBaseModel
+from ecomeal.config.configurations import ConfigurationManager
 
 STAGE_NAME = 'Prepare Base Model'
 class PrepareBaseModelTrainingPipeline:

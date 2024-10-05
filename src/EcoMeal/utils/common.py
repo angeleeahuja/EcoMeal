@@ -1,7 +1,7 @@
 import os
 from box.exceptions import BoxValueError
 import yaml
-from EcoMeal import logger
+from ecomeal import logger
 import json
 import joblib
 # from ensure import ensure_annotations

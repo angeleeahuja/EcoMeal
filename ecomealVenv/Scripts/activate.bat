@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\angel\Documents\EcoMeal\ecomealVenv
+set VIRTUAL_ENV=C:\Users\angel\Documents\ecomeal\ecomealVenv
 
 if not defined PROMPT set PROMPT=$P$G
 

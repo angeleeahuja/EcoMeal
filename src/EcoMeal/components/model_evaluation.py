@@ -1,7 +1,7 @@
 import tensorflow as tf
 from pathlib import Path
-from EcoMeal.utils.common import save_json
-from EcoMeal.entity.config_entity import ModelEvaluationConfig
+from ecomeal.utils.common import save_json
+from ecomeal.entity.config_entity import ModelEvaluationConfig
 
 class ModelEvaluation:
     def __init__(self, config: ModelEvaluationConfig):

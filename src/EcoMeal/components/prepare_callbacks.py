@@ -1,7 +1,7 @@
 import os
 import time
 import tensorflow as tf
-from EcoMeal.entity.config_entity import PrepareCallbacksConfig
+from ecomeal.entity.config_entity import PrepareCallbacksConfig
 
 class PrepareCallbacks:
     def __init__(self, config: PrepareCallbacksConfig):

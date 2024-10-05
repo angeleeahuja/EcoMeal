@@ -3,7 +3,7 @@ import logging
 from pathlib import Path
 
 logging.basicConfig(level= logging.INFO, format= '[%(asctime)s]: [%(message)s]')
-project_name = 'EcoMeal'
+project_name = 'ecomeal'
 list_of_directories = [
     '.github/workflows/.gitkeep',
     f'src/{project_name}/__init__.py',

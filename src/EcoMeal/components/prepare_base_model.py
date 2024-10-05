@@ -3,7 +3,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
 
 from pathlib import Path
 import tensorflow as tf
-from EcoMeal.entity.config_entity import PrepareBaseModelConfig
+from ecomeal.entity.config_entity import PrepareBaseModelConfig
 
 class PrepareBaseModel:
     def __init__(self, config: PrepareBaseModelConfig):

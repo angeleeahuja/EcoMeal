@@ -1,7 +1,7 @@
-from EcoMeal import logger
-from EcoMeal.components.model_training import ModelTraining
-from EcoMeal.components.prepare_callbacks import PrepareCallbacks
-from EcoMeal.config.configurations import ConfigurationManager
+from ecomeal import logger
+from ecomeal.components.model_training import ModelTraining
+from ecomeal.components.prepare_callbacks import PrepareCallbacks
+from ecomeal.config.configurations import ConfigurationManager
 
 STAGE_NAME = 'Model Training Stage'
 class ModelTrainingPipeline:

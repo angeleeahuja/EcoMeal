@@ -1,6 +1,6 @@
-from EcoMeal import logger
-from EcoMeal.components.data_ingestion import DataIngestion
-from EcoMeal.config.configurations import ConfigurationManager
+from ecomeal import logger
+from ecomeal.components.data_ingestion import DataIngestion
+from ecomeal.config.configurations import ConfigurationManager
 
 STAGE_NAME = 'Data Ingestion Stage'
 class DataIngestionTrainingPipeline():

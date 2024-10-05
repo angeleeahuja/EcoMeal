@@ -1,6 +1,6 @@
-from EcoMeal import logger
-from EcoMeal.components.model_evaluation import ModelEvaluation
-from EcoMeal.config.configurations import ConfigurationManager
+from ecomeal import logger
+from ecomeal.components.model_evaluation import ModelEvaluation
+from ecomeal.config.configurations import ConfigurationManager
 
 STAGE_NAME = 'Model Evaluation'
 class ModelEvaluationPipeline:
